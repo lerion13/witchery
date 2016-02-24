@@ -774,7 +774,8 @@ public class EntityWitchProjectile extends EntityThrowable {
             }
 
             if(y != -1) {
-               raiseUndead(world, x, y, z, playerThrower);
+                              	  //LeRioN fix
+	  if (!EventUtils.isInPrivate(world, x, y, z)) raiseUndead(world, x, y, z, playerThrower);
             }
 
             ++i;
@@ -1005,7 +1006,8 @@ public class EntityWitchProjectile extends EntityThrowable {
          y = dy == 0 && x == 0 && world.rand.nextInt(4) == 0?world.rand.nextInt(3) - 1:0;
          z = dz == 0 && x == 0 && y == 0 && world.rand.nextInt(4) == 0?world.rand.nextInt(3) - 1:0;
          if(x != 0 || y != 0 || z != 0) {
-            setBlockIfNotSolid(world, axisalignedbb + x, list1 + y, iterator + z, (Block)leavesBlock, meta);
+                           	  //LeRioN fix
+	  if (!EventUtils.isInPrivate(world, x, y, z)) setBlockIfNotSolid(world, axisalignedbb + x, list1 + y, iterator + z, (Block)leavesBlock, meta);
          }
       }
 
