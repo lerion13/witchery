@@ -517,10 +517,15 @@ public class EntityWitchProjectile extends EntityThrowable {
    }
 
    private boolean freezeWater(World world, int x, int y, int z) {
-      if(world.getBlock(x, y, z).getMaterial() == Material.water) {
+      	  //LeRioN fix
+	  if (!EventUtils.isInPrivate(world, x, y, z)) {
+	  if(world.getBlock(x, y, z).getMaterial() == Material.water) {
          world.setBlock(x, y, z, Blocks.ice);
          return true;
       } else {
+         return false;
+      }
+	  } else {
          return false;
       }
    }
