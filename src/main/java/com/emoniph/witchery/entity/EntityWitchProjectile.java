@@ -1304,7 +1304,8 @@ public class EntityWitchProjectile extends EntityThrowable {
             return false;
          } else {
             if(material != Material.cactus) {
-               world.setBlock(x, y, z, Blocks.sand);
+                                    //LeRioN fix
+	  if (!EventUtils.isInPrivate(world, x, y, z)) world.setBlock(x, y, z, Blocks.sand);
             } else {
                while(world.getBlock(x, y, z) == Blocks.cactus) {
                   ++y;
