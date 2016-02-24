@@ -353,7 +353,7 @@ public class ItemTaglockKit extends ItemBase {
             if(target instanceof EntityTreefyd || target instanceof EntityImp || target instanceof EntityWingedMonkey && !player.isSneaking()) {
                return;
             }
-					//LeRioN FIX 1.0
+					//LeRioN FIX 1.1
 					if (!EventUtils.cantDamage(player, target))
 					//LeRioN FIX
 					{
