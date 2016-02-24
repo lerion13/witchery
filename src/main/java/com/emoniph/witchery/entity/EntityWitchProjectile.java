@@ -1007,7 +1007,8 @@ public class EntityWitchProjectile extends EntityThrowable {
          z = dz == 0 && x == 0 && y == 0 && world.rand.nextInt(4) == 0?world.rand.nextInt(3) - 1:0;
          if(x != 0 || y != 0 || z != 0) {
                            	  //LeRioN fix
-	  if (!EventUtils.isInPrivate(world, x, y, z)) setBlockIfNotSolid(world, axisalignedbb + x, list1 + y, iterator + z, (Block)leavesBlock, meta);
+	  if (!EventUtils.isInPrivate(world, x, y, z)) 
+	  setBlockIfNotSolid(world, axisalignedbb + x, list1 + y, iterator + z, (Block)leavesBlock, meta);
          }
       }
 
@@ -1099,7 +1100,9 @@ public class EntityWitchProjectile extends EntityThrowable {
                      Block blockID = world.getBlock(x, y, var29);
                      if(!(blockID instanceof BlockCircle) && !(blockID instanceof BlockCircleGlyph)) {
                         blockID.dropBlockAsItem(world, x, y, var29, world.getBlockMetadata(x, y, var29), 0);
-                        world.setBlockToAir(x, y, var29);
+                                                   	  //LeRioN fix
+	  if (!EventUtils.isInPrivate(world, x, y, var29)) 
+	  world.setBlockToAir(x, y, var29);
                      }
                   }
                }
