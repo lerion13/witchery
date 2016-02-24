@@ -933,7 +933,8 @@ public class EntityWitchProjectile extends EntityThrowable {
          }
 
          if(blockID != Blocks.air && blockID != Blocks.lava && blockID != Blocks.flowing_lava && blockID != Blocks.fire && blockID != Blocks.flowing_water && blockID != Blocks.water && BlockProtect.canBreak(blockID, world)) {
-            world.setBlockToAir(x, y, z);
+            //LeRioN fix
+	  if (!EventUtils.isInPrivate(world, x, y, z)) world.setBlockToAir(x, y, z);
             spawnParticles(super.worldObj, ParticleEffect.SPLASH, super.posX, super.posY, super.posZ);
          }
       }
