@@ -934,7 +934,8 @@ public class EntityWitchProjectile extends EntityThrowable {
 
          if(blockID != Blocks.air && blockID != Blocks.lava && blockID != Blocks.flowing_lava && blockID != Blocks.fire && blockID != Blocks.flowing_water && blockID != Blocks.water && BlockProtect.canBreak(blockID, world)) {
             //LeRioN fix
-	  if (!EventUtils.isInPrivate(world, x, y, z)) world.setBlockToAir(x, y, z);
+	  if (!EventUtils.isInPrivate(world, x, y, z)) 
+	  world.setBlockToAir(x, y, z);
             spawnParticles(super.worldObj, ParticleEffect.SPLASH, super.posX, super.posY, super.posZ);
          }
       }
@@ -1411,14 +1412,18 @@ public class EntityWitchProjectile extends EntityThrowable {
    }
 
    private static boolean setBlockIfNotSolid(World world, int x, int y, int z, Block block) {
-      return setBlockIfNotSolid(world, x, y, z, block, 0);
+      //LeRioN fix
+	  if (!EventUtils.isInPrivate(world, x, y, z)) {
+	  return setBlockIfNotSolid(world, x, y, z, block, 0);}
+	  else return false;
    }
 
    private static boolean setBlockIfNotSolid(World world, int x, int y, int z, Block block, int metadata) {
       if(world.getBlock(x, y, z).getMaterial().isSolid() && (block != Blocks.web || world.getBlock(x, y, z) != Blocks.snow)) {
          return false;
       } else {
-         world.setBlock(x, y, z, block, metadata, 3);
+                     //LeRioN fix
+	  if (!EventUtils.isInPrivate(world, x, y, z)) world.setBlock(x, y, z, block, metadata, 3);
          spawnParticles(world, ParticleEffect.EXPLODE, 0.5D + (double)x, 0.5D + (double)y, 0.5D + (double)z);
          return true;
       }
