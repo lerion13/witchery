@@ -1,0 +1,42 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		maven {
+			name = "forge"
+			url = "http://files.minecraftforge.net/maven"
+		}
+		maven {
+			name = "sonatype"
+			url = "https://oss.sonatype.org/content/repositories/snapshots/"
+		}
+	}
+	dependencies {
+		classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+	}
+}
+
+apply plugin: 'forge'
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+version = "server"
+group= "witchery"
+archivesBaseName = "witchery"
+
+minecraft {
+	version = "1.7.10-10.13.4.1541-1.7.10"
+	runDir = "eclipse"
+}
+
+dependencies {
+	compile fileTree(dir: 'lib', include: '*-dev.jar')
+}
+
+jar {
+	manifest {
+		attributes 'FMLAT': 'witchery_at.cfg'
+    }
+
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	from zipTree('lib/' + archivesBaseName + '-' + version + '.jar')
+}
