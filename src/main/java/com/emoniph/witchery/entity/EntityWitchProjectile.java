@@ -736,31 +736,6 @@ public class EntityWitchProjectile extends EntityThrowable {
    }
 
    private void impactRaising(MovingObjectPosition mop) {
-      if(mop.typeOfHit == MovingObjectType.BLOCK && mop.sideHit == 1) {
-         int itemEntity1 = mop.blockX;
-         int newBrewStack1 = mop.blockY;
-         int posZ = mop.blockZ;
-         World world = super.worldObj;
-         raiseDead(itemEntity1, newBrewStack1, posZ, world, this.getThrower());
-      } else {
-         EntityItem itemEntity = null;
-         if(mop != null) {
-            ItemStack newBrewStack = Witchery.Items.GENERIC.itemBrewOfRaising.createStack();
-            switch(EntityWitchProjectile.NamelessClass2036201851.$SwitchMap$net$minecraft$util$MovingObjectPosition$MovingObjectType[mop.typeOfHit.ordinal()]) {
-            case 1:
-               itemEntity = new EntityItem(super.worldObj, (double)mop.blockX + 0.5D, (double)(mop.blockY + (mop.sideHit == 0?-1:1)) + 0.5D, (double)mop.blockZ + 0.5D, newBrewStack);
-               break;
-            case 2:
-               itemEntity = new EntityItem(super.worldObj, mop.entityHit.posX, mop.entityHit.posY, mop.entityHit.posZ, newBrewStack);
-            }
-         }
-
-         this.skipFX = true;
-         if(itemEntity != null) {
-            super.worldObj.spawnEntityInWorld(itemEntity);
-         }
-
-      }
    }
 
    public static void raiseDead(int posX, int posY, int posZ, World world, EntityLivingBase raiser) {
@@ -1304,7 +1279,7 @@ public class EntityWitchProjectile extends EntityThrowable {
             return false;
          } else {
             if(material != Material.cactus) {
-                                    //LeRioN fix
+      //LeRioN fix
 	  if (!EventUtils.isInPrivate(world, x, y, z)) world.setBlock(x, y, z, Blocks.sand);
             } else {
                while(world.getBlock(x, y, z) == Blocks.cactus) {
