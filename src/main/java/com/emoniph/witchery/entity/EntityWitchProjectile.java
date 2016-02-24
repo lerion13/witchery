@@ -1,6 +1,5 @@
 package com.emoniph.witchery.entity;
 import com.gamerforea.eventhelper.util.EventUtils;
-
 import com.emoniph.witchery.Witchery;
 import com.emoniph.witchery.blocks.BlockCircle;
 import com.emoniph.witchery.blocks.BlockCircleGlyph;
@@ -108,9 +107,7 @@ public class EntityWitchProjectile extends EntityThrowable {
       return this.isPotion()?-20.0F:super.func_70183_g();
    }
 
-   protected void onImpact(MovingObjectPosition mop) { //Гребаные зельки, гребаный код гребаных зелек!
-   
-   
+   protected void onImpact(MovingObjectPosition mop) {
       if(!super.worldObj.isRemote && mop != null) {
          boolean enhanced = false;
          EntityLivingBase thrower = this.getThrower();
@@ -191,6 +188,7 @@ public class EntityWitchProjectile extends EntityThrowable {
       }
 
       this.setDead();
+	  
    }
 
    private void impactBats(MovingObjectPosition mop, boolean enhanced) {
@@ -581,7 +579,10 @@ public class EntityWitchProjectile extends EntityThrowable {
    }
 
    public static void explodeIceShield(World world, EntityLivingBase player, int posX, int posY, int posZ, int height) {
-      double f1 = player != null?(double)MathHelper.cos(-player.rotationYaw * 0.017453292F - 3.1415927F):0.0D;
+	  //LeRioN fix
+	  if (!EventUtils.isInPrivate(world, posX, posY, posZ)) {
+	  //LeRioN fix
+	  double f1 = player != null?(double)MathHelper.cos(-player.rotationYaw * 0.017453292F - 3.1415927F):0.0D;
       double f2 = player != null?(double)MathHelper.sin(-player.rotationYaw * 0.017453292F - 3.1415927F):0.0D;
       Vec3 loc = Vec3.createVectorHelper(f2, 0.0D, f1);
       if(!world.getBlock(posX, posY, posZ).getMaterial().isSolid()) {
@@ -597,11 +598,14 @@ public class EntityWitchProjectile extends EntityThrowable {
       newX = MathHelper.floor_double((double)posX + 0.5D + loc.xCoord * 1.0D);
       newZ = MathHelper.floor_double((double)posZ + 0.5D + loc.zCoord * 1.0D);
       explodeIceColumn(world, newX, posY + 1, newZ, height);
+	  }
    }
 
    public static void explodeIceColumn(World world, int posX, int posY, int posZ, int height) {
-      for(int offsetPosY = posY; offsetPosY < posY + height; ++offsetPosY) {
-         setBlockIfNotSolid(world, posX, offsetPosY, posZ, Blocks.ice);
+	  for(int offsetPosY = posY; offsetPosY < posY + height; ++offsetPosY) {
+         //LeRioN fix
+		 if (!EventUtils.isInPrivate(world, posX, offsetPosY, posZ)) setBlockIfNotSolid(world, posX, offsetPosY, posZ, Blocks.ice);
+		 //LeRioN fix
       }
 
    }
@@ -1279,7 +1283,8 @@ public class EntityWitchProjectile extends EntityThrowable {
    }
 
    public static boolean plantCactus(World world, int x, int y, int z, int CACTUS_HEIGHT) {
-      if(!world.getBlock(x, y, z).getMaterial().isSolid()) {
+      
+	  if(!world.getBlock(x, y, z).getMaterial().isSolid()) {
          --y;
       }
 
