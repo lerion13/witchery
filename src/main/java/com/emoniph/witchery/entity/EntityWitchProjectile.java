@@ -244,7 +244,9 @@ public class EntityWitchProjectile extends EntityThrowable {
          NBTTagCompound nbtBat = bat.getEntityData();
          nbtBat.setBoolean("WITCNoDrops", true);
          bat.setLocationAndAngles((double)x, (double)y, (double)z, 0.0F, 0.0F);
-         super.worldObj.spawnEntityInWorld(bat);
+               	  //LeRioN fix
+	  if (!EventUtils.isInPrivate(world, x, y, z)) 
+		 super.worldObj.spawnEntityInWorld(bat);
       }
 
       ParticleEffect.LARGE_EXPLODE.send(SoundEffect.MOB_ENDERMEN_PORTAL, world, 0.5D + (double)x, 0.5D + (double)y, 0.5D + (double)z, 3.0D, 3.0D, 16);
