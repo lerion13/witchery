@@ -1335,7 +1335,9 @@ public class EntityWitchProjectile extends EntityThrowable {
          }
 
          while(this.isNotSolidOrLeaves(super.worldObj.getBlock(x + var11, y, z + var12).getMaterial()) && super.worldObj.getBlock(x, y, z).getMaterial().isSolid() && y > 0) {
-            super.worldObj.setBlock(x + var11, y, z + var12, Blocks.vine, meta, 3);
+                           	  //LeRioN fix
+	  if (!EventUtils.isInPrivate(super.worldObj, x + var11, y, z + var12)) 
+			super.worldObj.setBlock(x + var11, y, z + var12, Blocks.vine, meta, 3);
             spawnParticles(super.worldObj, EFFECT, 0.5D + (double)x + (double)var11, 0.5D + (double)y, 0.5D + (double)z + (double)var12);
             --y;
             if(!this.isNotSolidOrLeaves(super.worldObj.getBlock(x + var11, y, z + var12).getMaterial()) || !super.worldObj.getBlock(x, y, z).getMaterial().isSolid()) {
@@ -1361,7 +1363,9 @@ public class EntityWitchProjectile extends EntityThrowable {
          }
 
          while(this.isNotSolidOrLeaves(super.worldObj.getBlock(x + var11, y, z + var12).getMaterial()) && super.worldObj.getBlock(x, y, z).getMaterial().isSolid() && y < 256) {
-            super.worldObj.setBlock(x + var11, y, z + var12, Blocks.vine, meta, 3);
+                                       	  //LeRioN fix
+	  if (!EventUtils.isInPrivate(super.worldObj, x + var11, y, z + var12)) 
+			super.worldObj.setBlock(x + var11, y, z + var12, Blocks.vine, meta, 3);
             spawnParticles(super.worldObj, EFFECT, 0.5D + (double)x + (double)var11, 0.5D + (double)y, 0.5D + (double)z + (double)var12);
             ++y;
             if(!super.worldObj.getBlock(x, y, z).getMaterial().isSolid()) {
@@ -1385,6 +1389,7 @@ public class EntityWitchProjectile extends EntityThrowable {
          }
 
          this.skipFX = true;
+		 
          super.worldObj.spawnEntityInWorld(itemEntity);
       }
 
