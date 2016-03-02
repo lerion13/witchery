@@ -111,6 +111,7 @@ public class EntityHornedHuntsman extends EntityMob implements IBossDisplayData,
          int i = this.func_82212_n() - 1;
          if(i <= 0) {
             if(this.explosiveEntrance) {
+				//lerion фикс охотника
                //super.worldObj.newExplosion(this, super.posX, super.posY + (double)this.getEyeHeight(), super.posZ, 6.0F, false, super.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"));
             }
 
