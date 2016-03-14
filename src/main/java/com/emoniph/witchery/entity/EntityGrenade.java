@@ -97,7 +97,7 @@ public class EntityGrenade extends EntityThrowableBase {
 
    public void onUpdate() {
       super.onUpdate();
-	  EntityPlayer player = (EntityPlayer)EntityGrenade.thrower;
+	  //EntityPlayer player = (EntityPlayer)EntityGrenade.thrower;
       if(super.worldObj.isRemote && this.getImpact() && super.worldObj.rand.nextInt(4) == 0) {
          float var8 = 1.0F;
          float var10 = 1.0F;
@@ -167,7 +167,9 @@ public class EntityGrenade extends EntityThrowableBase {
                      EntityPlayer player = (EntityPlayer)entity1;
                      ExtendedPlayer playerEx = ExtendedPlayer.get(player);
                      if(playerEx.getVampireLevel() == 4 && playerEx.canIncreaseVampireLevel()) {
-                        if(playerEx.getVampireQuestCounter() >= 9) {
+                        
+						//if (!EventUtils.cantDamage(entity1, playerEx)) //LeRioN Fix Херня какая-то...
+						if(playerEx.getVampireQuestCounter() >= 9) {
                            playerEx.increaseVampireLevel();
                         } else {
                            playerEx.increaseVampireQuestCounter();

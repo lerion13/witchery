@@ -20,9 +20,12 @@
 :apiClasses UP-TO-DATE
 :sourceMainJava
 :compileJavawarning: [options] bootstrap class path not set in conjunction with -source 1.6
-E:\1git\witchery\build\sources\java\com\emoniph\witchery\entity\EntityGrenade.java:100: error: thrower has private access in EntityThrowableBase
-	  EntityPlayer player = (EntityPlayer)EntityGrenade.thrower;
-	                                                   ^
+E:\1git\witchery\build\sources\java\com\emoniph\witchery\entity\EntityGrenade.java:171: error: method cantDamage in class EventUtils cannot be applied to given types;
+						if (!EventUtils.cantDamage(entity1, playerEx)) //LeRioN Fix
+						               ^
+  required: Entity,Entity
+  found: EntityLivingBase,ExtendedPlayer
+  reason: actual argument ExtendedPlayer cannot be converted to Entity by method invocation conversion
 Note: E:\1git\witchery\build\sources\java\com\emoniph\witchery\entity\ItemHuntsmanSpear.java uses or overrides a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
 Note: Some input files use unchecked or unsafe operations.
@@ -42,4 +45,4 @@ Run with --stacktrace option to get the stack trace. Run with --info or --debug 
 
 BUILD FAILED
 
-Total time: 27.703 secs
+Total time: 22.77 secs
