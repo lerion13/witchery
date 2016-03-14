@@ -20,24 +20,26 @@
 :apiClasses UP-TO-DATE
 :sourceMainJava
 :compileJavawarning: [options] bootstrap class path not set in conjunction with -source 1.6
+E:\1git\witchery\build\sources\java\com\emoniph\witchery\entity\EntityGrenade.java:100: error: thrower has private access in EntityThrowableBase
+	  EntityPlayer player = (EntityPlayer)EntityGrenade.thrower;
+	                                                   ^
 Note: E:\1git\witchery\build\sources\java\com\emoniph\witchery\entity\ItemHuntsmanSpear.java uses or overrides a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
 Note: Some input files use unchecked or unsafe operations.
 Note: Recompile with -Xlint:unchecked for details.
+1 error
 1 warning
+ FAILED
 
-:processResources UP-TO-DATE
-:classes
-:jar
-:compileTestJava UP-TO-DATE
-:processTestResources UP-TO-DATE
-:testClasses UP-TO-DATE
-:test UP-TO-DATE
-:reobf
-:assemble
-:check UP-TO-DATE
-:build
+FAILURE: Build failed with an exception.
 
-BUILD SUCCESSFUL
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler error output for details.
 
-Total time: 1 mins 46.708 secs
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
+
+BUILD FAILED
+
+Total time: 27.703 secs
